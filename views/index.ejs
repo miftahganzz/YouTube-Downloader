@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Downloader</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        .custom-input::placeholder {
+            color: #a0aec0;
+        }
+
+        .custom-input:focus::placeholder {
+            color: transparent;
+        }
+
+        .custom-input:focus {
+            outline: none;
+            border-color: #f56565;
+            box-shadow: 0 0 0 2px rgba(245, 101, 101, 0.5);
+        }
+
+        .custom-button {
+            background-color: #f56565;
+            height: 100%;
+        }
+
+        .custom-button:hover {
+            background-color: #e53e3e;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen p-4">
+    <div class="bg-gray-800 text-white p-6 rounded-lg shadow-lg w-full max-w-2xl mb-8">
+        <h1 class="text-3xl font-bold mb-6 text-center">YouTube Downloader</h1>
+        <div class="w-full mb-6">
+            <form action="/" method="POST" class="flex items-center">
+                <div class="flex-1 relative">
+                    <input type="text" id="url" name="url" placeholder="Enter YouTube URL"
+                        class="mt-1 block w-full border border-gray-700 rounded-md p-2 custom-input text-black" required>
+                </div>
+                <button type="submit" class="ml-2 flex items-center justify-center bg-red-500 hover:bg-red-600 text-white p-2 rounded-md custom-button">
+                    <i class="bi bi-download text-2xl"></i>
+                </button>
+            </form>
+        </div>
+
+        <% if (videoInfo) { %>
+        <div class="bg-gray-900 text-white p-6 rounded-lg shadow-lg w-full">
+            <div class="flex flex-col md:flex-row items-center md:items-start">
+                <div class="w-full md:w-1/2 md:mr-4 mb-4 md:mb-0">
+                    <img src="<%= videoInfo.videoDetails.thumbnails[0].url %>" alt="<%= videoInfo.videoDetails.title %>" class="w-full rounded-lg mb-4">
+                </div>
+                <div class="w-full md:w-1/2 md:ml-4">
+                    <h2 class="text-2xl font-bold mb-2"><%= videoInfo.videoDetails.title %></h2>
+                    <p class="text-gray-300 mb-2"><%= videoInfo.videoDetails.author.name %></p>
+                    <p class="text-gray-300 mb-4">Published on: <%= new Date(videoInfo.videoDetails.publishDate).toLocaleDateString() %></p>
+                    <div class="flex flex-col space-y-2">
+                        <a href="/download?url=<%= videoInfo.videoDetails.video_url %>&type=video"
+                            class="inline-block bg-red-500 text-white p-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 custom-button">
+                            <i class="bi bi-camera-video mr-2"></i> Download Video (1080p)
+                        </a>
+                        <a href="/download?url=<%= videoInfo.videoDetails.video_url %>&type=audio"
+                            class="inline-block bg-red-500 text-white p-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 custom-button">
+                            <i class="bi bi-music-note mr-2"></i> Download Audio (MP3)
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% } %>
+    </div>
+</body>
+
+</html>
