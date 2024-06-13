@@ -1,0 +1,21 @@
+{
+  "name": "yt-down",
+  "version": "1.0.0",
+  "description": "Simple website YouTube Downloader, by Miftah.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "Miftah GanzZ",
+  "license": "ISC",
+  "dependencies": {
+    "@danicoding/scraper": "^1.0.1",
+    "@distube/ytdl-core": "^4.13.4",
+    "@types/node": "^18.0.6",
+    "axios": "^1.7.2",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "ytdl-core": "^4.11.5"
+  }
+}
