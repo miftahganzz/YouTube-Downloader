@@ -66,3 +66,9 @@ Contributions are welcome! If you have any ideas for new features or improvement
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+## Thanks to
+<a href="https://github.com/miftahganzz"><img src="https://github.com/miftahganzz.png?size=100" width="100" height="100"></a> |
+---|
+[Miftah GanzZ](https://github.com/miftahganzz)  |
+Developer |
