@@ -1,11 +1,11 @@
 # YouTube Downloader
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/miftahganzz/File-Uploader/main/uploader.png" alt="Preview">
+  <img src="https://raw.githubusercontent.com/miftahganzz/YouTube-Downloader/main/IMG-20240613-WA0481.png" alt="Preview">
 </p>
 
 <p align="center">
-<a href="https://cdn.itzpire.site" target="_blank">Visit Now 🚀</a>
+<a href="https://youtube-down1oader.vercel.app" target="_blank">Visit Now 🚀</a>
 </p>
 
 # Introduction 
