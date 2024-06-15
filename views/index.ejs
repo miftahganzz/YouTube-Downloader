@@ -39,14 +39,44 @@
         <div class="w-full mb-6">
             <form action="/" method="POST" class="flex items-center">
                 <div class="flex-1 relative">
-                    <input type="text" id="url" name="url" placeholder="Enter YouTube URL"
-                        class="mt-1 block w-full border border-gray-700 rounded-md p-2 custom-input text-black" required>
+                    <input type="text" id="url" name="url" placeholder="Enter YouTube URL or search query" class="mt-1 block w-full border border-gray-700 rounded-md p-2 custom-input text-black">
                 </div>
                 <button type="submit" class="ml-2 flex items-center justify-center bg-red-500 hover:bg-red-600 text-white p-2 rounded-md custom-button">
-                    <i class="bi bi-download text-2xl"></i>
+                    <i class="bi bi-search text-2xl"></i>
                 </button>
             </form>
         </div>
+
+        <% if (error) { %>
+        <div class="bg-red-600 text-white p-4 rounded-lg shadow-lg w-full mb-6">
+            <p><%= error %></p>
+        </div>
+        <% } %>
+
+        <% if (searchResults) { %>
+        <div class="bg-gray-900 text-white p-6 rounded-lg shadow-lg w-full mb-8">
+            <h2 class="text-xl font-bold mb-4">Search Results</h2>
+            <% searchResults.forEach(result => { %>
+            <div class="flex mb-4">
+                <div class="w-1/4">
+                    <img src="<%= result.thumbnail %>" alt="<%= result.title %>" class="w-full rounded-lg">
+                </div>
+                <div class="w-3/4 pl-4">
+                    <h3 class="text-lg font-bold"><%= result.title %></h3>
+                    <p class="text-gray-300"><%= result.channel.name %> • <%= result.views %> views • <%= result.uploaded %></p>
+                    <div class="flex items-center mt-2 space-x-4">
+                        <a href="/download?url=<%= result.link %>&type=video" class="text-red-500 hover:underline">
+                            <i class="bi bi-camera-video-fill text-2xl"></i>
+                        </a>
+                        <a href="/download?url=<%= result.link %>&type=audio" class="text-red-500 hover:underline">
+                            <i class="bi bi-music-note-beamed text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <% }); %>
+        </div>
+        <% } %>
 
         <% if (videoInfo) { %>
         <div class="bg-gray-900 text-white p-6 rounded-lg shadow-lg w-full">
@@ -58,14 +88,12 @@
                     <h2 class="text-2xl font-bold mb-2"><%= videoInfo.videoDetails.title %></h2>
                     <p class="text-gray-300 mb-2"><%= videoInfo.videoDetails.author.name %></p>
                     <p class="text-gray-300 mb-4">Published on: <%= new Date(videoInfo.videoDetails.publishDate).toLocaleDateString() %></p>
-                    <div class="flex flex-col space-y-2">
-                        <a href="/download?url=<%= videoInfo.videoDetails.video_url %>&type=video"
-                            class="inline-block bg-red-500 text-white p-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 custom-button">
-                            <i class="bi bi-camera-video mr-2"></i> Download Video (1080p)
+                    <div class="flex items-center space-x-4">
+                        <a href="/download?url=<%= videoInfo.videoDetails.video_url %>&type=video" class="text-red-500 hover:underline">
+                            <i class="bi bi-camera-video-fill text-2xl"></i>
                         </a>
-                        <a href="/download?url=<%= videoInfo.videoDetails.video_url %>&type=audio"
-                            class="inline-block bg-red-500 text-white p-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 custom-button">
-                            <i class="bi bi-music-note mr-2"></i> Download Audio (MP3)
+                        <a href="/download?url=<%= videoInfo.videoDetails.video_url %>&type=audio" class="text-red-500 hover:underline">
+                            <i class="bi bi-music-note-beamed text-2xl"></i>
                         </a>
                     </div>
                 </div>
